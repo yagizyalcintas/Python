@@ -1,8 +1,7 @@
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
+# direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+# text = input("Type your message:\n").lower()
+# shift = int(input("Type the shift number:\n"))
 
 
 # TODO-1: Create a function called 'decrypt()' that takes 'original_text' and 'shift_amount' as inputs.
@@ -20,7 +19,37 @@ def encrypt(original_text, shift_amount):
     print(f"Here is the encoded result: {cipher_text}")
 
 
-encrypt(original_text=text, shift_amount=shift)
+
+
+
+def decrypt(original_text, shift_amount):
+    shift_amount = shift_amount % len(alphabet)
+    print("shift_amount: " + str(shift_amount))
+    decrypted=""
+    for letter in original_text:
+        decrypted += alphabet[alphabet.index(letter)-shift_amount]
+
+    print(decrypted)
+
+
+def ceasar():
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+    text = input("Type your message:\n").lower()
+    while True:
+        try:
+            shift = int(input("Type the shift number:\n"))
+            break
+        except ValueError:
+            print("enter an integer")
+    if direction=="encode":
+        encrypt(original_text=text, shift_amount=shift)
+    elif direction=="decode":
+        decrypt(original_text=text,shift_amount=shift)
+    else:
+        print("choose a valid option")
+        ceasar()
+
+ceasar()
 
 
 

@@ -1,5 +1,7 @@
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+from operator import index
 
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+alphabet_length=len(alphabet)
 direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
@@ -15,3 +17,15 @@ shift = int(input("Type the shift number:\n"))
 # TODO-3: Call the 'encrypt()' function and pass in the user inputs. You should be able to test the code and encrypt a
 #  message.
 
+#USING % IS BETTER SINCE YOU DONT NEED TO CHECK IF IT EXCEEDS THE ALP. SIZE AND NO NEED FOR SUBSTRACTION
+
+def encrypt(original_text:str,shift_amount:int):
+    encrypted=""
+    for char in original_text:
+        if alphabet.index(char)+shift_amount <= alphabet_length:
+            encrypted += alphabet[alphabet.index(char)+shift_amount]
+        else:
+            encrypted += alphabet[alphabet.index(char)+shift_amount-alphabet_length]
+    print(encrypted)
+
+encrypt(text,shift)
